@@ -1,7 +1,8 @@
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  font-family: Arial, sans-serif;
   
   h1 {
     color: #333;
@@ -14,12 +15,50 @@
   }
 }
 
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.example-selector {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+  
+  button {
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background-color: #e0e0e0;
+    }
+    
+    &.active {
+      background-color: #007bff;
+      color: white;
+      border-color: #0069d9;
+    }
+  }
+}
+
 .demo-section {
-  margin-bottom: 40px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #f9f9f9;
   
   h2 {
-    color: #333;
-    margin-bottom: 10px;
+    margin-top: 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    color: #444;
   }
   
   p {
@@ -32,7 +71,8 @@
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 4px;
-  background-color: #f9f9f9;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .regular-scroll-viewport {
@@ -45,10 +85,12 @@
 }
 
 .item {
-  // height: 60px;
-  padding: 10px;
-  box-sizing: border-box;
+  padding: 20px;
   border-bottom: 1px solid #eee;
+  
+  &.example-alternate {
+    background-color: #f6f6f6;
+  }
   
   &:hover {
     background-color: #f0f0f0;
@@ -81,4 +123,19 @@
 
 .example-alternate {
   background: rgba(127, 127, 127, 0.3);
+}
+
+.action-button {
+  margin-bottom: 15px;
+  padding: 8px 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  
+  &:hover {
+    background-color: #218838;
+  }
 }

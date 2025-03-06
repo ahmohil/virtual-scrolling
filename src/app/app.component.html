@@ -1,15 +1,40 @@
 <div class="container">
   <h1>Angular CDK Virtual Scrolling Demo</h1>
   <p>
-    This example demonstrates the difference between regular and virtual
-    scrolling with 10,000 items
+    This example demonstrates virtual scrolling with 10,000 items using
+    different data types: arrays, observables, and custom data sources
   </p>
 
-  <div class="demo-section">
-    <h2>With Virtual Scrolling</h2>
-    <p>CDK Virtual Scroll renders only visible items</p>
-    
-    <cdk-virtual-scroll-viewport class="virtual-scroll-viewport" [itemSize]="100" >
+  <div class="example-selector">
+    <button
+      [class.active]="activeExample === 'array'"
+      (click)="changeExample('array')"
+    >
+      Array Example
+    </button>
+    <button
+      [class.active]="activeExample === 'observable'"
+      (click)="changeExample('observable')"
+    >
+      Observable Example
+    </button>
+    <button
+      [class.active]="activeExample === 'datasource'"
+      (click)="changeExample('datasource')"
+    >
+      DataSource Example
+    </button>
+  </div>
+
+  <!-- Array Example -->
+  <div class="demo-section" *ngIf="activeExample === 'array'">
+    <h2>Using Array</h2>
+    <p>Basic virtual scrolling with standard JavaScript arrays</p>
+
+    <cdk-virtual-scroll-viewport
+      class="virtual-scroll-viewport"
+      [itemSize]="100"
+    >
       <div
         *cdkVirtualFor="
           let item of items;
@@ -35,4 +60,77 @@
     </cdk-virtual-scroll-viewport>
   </div>
 
+  <!-- Observable Example -->
+  <div class="demo-section" *ngIf="activeExample === 'observable'">
+    <h2>Using Observable&lt;Array&gt;</h2>
+    <p>Virtual scrolling with Observable data stream</p>
+
+    <button class="action-button" (click)="addItemToObservable()">
+      Add New Item
+    </button>
+
+    <cdk-virtual-scroll-viewport
+      class="virtual-scroll-viewport"
+      [itemSize]="100"
+    >
+      <div
+        *cdkVirtualFor="
+          let item of itemsObservable;
+          let index = index;
+          let count = count;
+          let first = first;
+          let even = even;
+          let odd = odd
+        "
+        class="item"
+        [class.example-alternate]="odd"
+      >
+        <div class="item-content">
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.description }}</p>
+          <p>Index: {{ index }}</p>
+          <p>Count: {{ count }}</p>
+          <p>First: {{ first }}</p>
+          <p>Even: {{ even }}</p>
+          <p>Odd: {{ odd }}</p>
+        </div>
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </div>
+
+  <!-- DataSource Example -->
+  <div class="demo-section" *ngIf="activeExample === 'datasource'">
+    <h2>Using DataSource</h2>
+    <p>Virtual scrolling with CDK DataSource implementation</p>
+
+    <button class="action-button" (click)="addItemToDataSource()">
+      Add New Item
+    </button>
+
+    <cdk-virtual-scroll-viewport class="virtual-scroll-viewport" [itemSize]="100">
+      <div
+        *cdkVirtualFor="
+          let item of itemsDataSource;
+          let index = index;
+          let count = count;
+          let first = first;
+          let even = even;
+          let odd = odd
+        "
+        class="item"
+        [class.example-alternate]="odd"
+      >
+        <div class="item-content">
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.description }}</p>
+          <p>Index: {{ index }}</p>
+          <p>Count: {{ count }}</p>
+          <p>First: {{ first }}</p>
+          <p>Even: {{ even }}</p>
+          <p>Odd: {{ odd }}</p>
+        </div>
+      </div>
+    </cdk-virtual-scroll-viewport>
+    
+  </div>
 </div>
